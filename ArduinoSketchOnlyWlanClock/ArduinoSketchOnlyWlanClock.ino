@@ -1,13 +1,15 @@
+//This Code is for an Firebeetle 8266
+
 #include <Adafruit_NeoPixel.h>
+#include <TimeLib.h>
 #ifdef __AVR__
 #endif
-
-//#include <DS3231_Simple.h>
-
 
 // Create a variable to hold the time data 
 int intMin;
 int intHour;
+int intDay;
+int intMonth;
 int intTimeZone = 2;
 int intConnectionError;
 
@@ -265,6 +267,12 @@ void readTheTime(){
     // print Unix time:
     Serial.println(epoch);
 
+    intDay = day(epoch);
+    intMonth = month(epoch);
+    Serial.print("-----------");
+    Serial.println(intDay);
+    Serial.print("-----------");
+    Serial.println(intMonth);
 
     // print the hour, minute and second:
     Serial.print("The UTC time is ");       // UTC is the time at Greenwich Meridian (GMT)
